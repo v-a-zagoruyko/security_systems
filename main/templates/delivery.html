@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="content__title">Доставка</h1>
+<p class="content__info">
+  Доставка по Тюмени в черте города при покупке от 3000 рублей - бесплатно.
+  Доставка по России согласно тарифам транспортной компании.
+</p>
+<div class="partners">
+  {% for item in delivery %}
+  <div class="partners-card">
+    <img
+      src={{ item.image.url }}
+      alt={{ item.title }}
+      class="partners-card__logo"
+    />
+    <div class="partners-card__info">
+      <p class="partners-card__title">{{ item.title }}</p>
+      <p class="partners-card__description">{{ item.description }}</p>
+    </div>
+    {% if item.link %}
+      <a href={{ item.link }} target="_blank" class="partners-card__link">Ссылка на сайт партнера</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

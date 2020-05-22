@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="content__title">Системы безопасности</h1>
+<h2 class="content__subtitle">Торгово-монтажная организация</h2>
+
+<div class="swiper">
+  {% for item in sellout %}
+  <div class="swiper__slide">
+    <img src={{ item.image.url }} alt="" class="swiper__image" />
+  </div>
+  {% endfor %}
+</div>
+
+<h2 class="content__subtitle">Наши партнеры</h2>
+<div class="partners">
+  {% for item in partners %}
+  <div class="partners-card">
+    <img
+      src={{ item.image.url }}
+      alt={{ item.title }}
+      class="partners-card__logo"
+    />
+    <div class="partners-card__info">
+      <p class="partners-card__title">{{ item.title }}</p>
+      <p class="partners-card__description">{{ item.description }}</p>
+    </div>
+    {% if item.link %}
+      <a href={{ item.link }} target="_blank" class="partners-card__link">Ссылка на сайт партнера</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+<p class="content__info">
+  ГК "Системы безопасности" включает в себя две компании: ООО «Системы
+  безопасности» и ИП Басов А.В. Это торгово-монтажная организация, плодотворно
+  осуществляющая обслуживание объектов, установку и продажу охранного-пожарного
+  оборудования и видеонаблюдения с 1997 года. За это время наша компания
+  зарекомендовала себя как надежный партнер в сотрудничестве с УВО при ГУВД
+  Тюменской области, а также Главном управление МЧС России по Тюменской области.
+  Работаем по всей России.
+</p>
+<p class="content__info">
+  Компания ГК «Системы безопасности» давно сотрудничает с
+  заводами-изготовителями представленного оборудования, что гарантирует
+  надежность используемых продуктов и безопасность вашего объекта. Такое
+  сотрудничество позволяет нам иметь приемлемые цены не только в Тюменском
+  регионе, но и за его пределами.
+</p>
+{% endblock %}
