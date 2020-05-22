@@ -6,8 +6,6 @@ def index(request):
   partners = Partners.objects.all()
   sellout = Sellout.objects.all()
 
-  print(categories[4].nestedCategory)
-
   context = {
     'categories': categories,
     'partners': partners,
@@ -55,3 +53,40 @@ def contacts(request):
   }
 
   return render(request, 'contacts.html', context=context)
+
+def sale(request):
+  categories = ItemCategory.objects.all()
+  items = Item.objects.filter(cost_sale__gt=0)
+
+  context = {
+    'categories': categories,
+    'items': items,
+  }
+
+  return render(request, 'sale.html', context=context)
+
+def category(request, pk):
+  categories = ItemCategory.objects.all()
+  category = ItemCategory.objects.get(id=pk)
+  items = Item.objects.filter(kind=category)
+
+  context = {
+    'categories': categories,
+    'title': category.title,
+    'items': items,
+  }
+
+  return render(request, 'category.html', context=context)
+
+def search(request):
+  categories = ItemCategory.objects.all()
+  query = request.GET.get('query')
+  items = Item.objects.filter(title__icontains=query)
+
+  context = {
+    'categories': categories,
+    'query': query,
+    'items': items,
+  }
+
+  return render(request, 'search.html', context=context)

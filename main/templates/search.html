@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="content__title">Поиск</h1>
+<h1 class="content__subtitle">Результаты по запросу "{{ query }}"</h1>
+
+{% if items|length > 0 %}
+  <div class="grid">
+  {% for item in items %}
+    <a href="#item{{ item.id }}" rel="modal:open" class="item-card grid__item">
+      <img src={{ item.image.url }} alt={{ item.title }} class="item-card__image">
+      <div class="item-card__info">
+        <span class="item-card__title">{{ item.title }}</span>
+        <span class="item-card__description">{{ item.description }}</span>
+        <span class="item-card__price item-card__price--inline item-card__price--canceled">
+          {{ item.cost }} ₽
+          <span class="item-card__dash"></span>
+        </span>
+        <span class="item-card__price item-card__price--inline">{{ item.cost_sale }} ₽</span>
+
+        <span class="item-card__sale">-{{ item.get_sale }} ₽</span>
+      </div>
+    </a>
+    <div id="item{{ item.id }}" class="modal">
+      <span class="item-card__title">{{ item.title }}</span>
+      <span class="item-card__description">{{ item.description }}</span>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <p class="content__info">Ничего не найдено</p>
+{% endif %}
+{% endblock %} %}

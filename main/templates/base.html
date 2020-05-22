@@ -21,6 +21,7 @@
       type="text/css"
       href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   </head>
   <body>
     <div class="sidebar-desktop">
@@ -42,34 +43,18 @@
         Московский тракт, 179/1
       </a>
 
-      <!-- Поиск -->
-
-      <!-- Распродажа
-      Каталог оборудования
-        Видеонаблюдение
-          IP-Видеокамеры
-          AHD-Видеокамеры
-          Видеорегистраторы
-        Аксессуары для видеонаблюдения
-        Домофоны
-        Источники питания
-        Системы "Орион"
-        Радиоканальные системы ОПС
-        Приборы ОПС
-        Извещатели пожарной сигнализации
-        Извещатели охранной сигнализации
-        Кабельная продукция
-        Оповещение
-        СКУД
-        Шлагбаумы и ворота
-        Монтажные материалы
-      О компании
-      Доставка
-      Монтаж
-      Контакты -->
+    <form method="GET" action="{% url 'search' %}">
+      <input class="input input--small" id="query" name="query" type="text" placeholder="Введите название" required/>
+      <button type="submit" class="btn">Поиск</button>
+    </form>
 
       <nav class="nav">
+        <a href="{% url 'sale' %}" class="nav__link nav__link--bright">
+          <i class="fa fa-fw fa-lg fa-exclamation" aria-hidden="true" style="margin-right: 10px;"></i>
+          Распродажа
+        </a>
         <a href="#!" id="catalog" class="nav__link">
+          <i class="fa fa-fw fa-lg fa-cog fa-spin" aria-hidden="true" style="margin-right: 10px;"></i>
           Каталог оборудования
           <i class="fa fa-caret-down" aria-hidden="true" style="font-size: 15px; width: 20px; margin-left: 10px;"></i>
         </a>
@@ -87,7 +72,7 @@
             <div id="dropdown-{{ item.id }}" class="nav__dropdown" hidden>
               {% for nested_item in item.nested.all %}
               <a
-                href="{% url 'index' %}"
+                href="{% url 'category' 1  %}"
                 class="nav__link nav__link--shifted2"
               >
                 {{ nested_item.title }}
@@ -95,16 +80,28 @@
               {% endfor %}
             </div>
             {% else %}
-            <a href="{% url 'index' %}" class="nav__link nav__link--shifted">
+            <a href="{% url 'category' item.id %}" class="nav__link nav__link--shifted">
               {{ item.title }}
             </a>
             {% endif %}
           {% endfor %}
         </div>
-        <a href="{% url 'about' %}" class="nav__link">О компании</a>
-        <a href="{% url 'delivery' %}" class="nav__link">Доставка</a>
-        <a href="{% url 'setup' %}" class="nav__link">Монтаж</a>
-        <a href="{% url 'contacts' %}" class="nav__link">Контакты</a>
+        <a href="{% url 'about' %}" class="nav__link">
+          <i class="fa fa-fw fa-lg fa-info-circle" aria-hidden="true" style="margin-right: 10px;"></i>
+          О компании
+        </a>
+        <a href="{% url 'delivery' %}" class="nav__link">
+          <i class="fa fa-fw fa-lg fa-truck" aria-hidden="true" style="margin-right: 10px;"></i>
+          Доставка
+        </a>
+        <a href="{% url 'setup' %}" class="nav__link">
+          <i class="fa fa-fw fa-lg fa-chain-broken" aria-hidden="true" style="margin-right: 10px;"></i>
+          Монтаж
+        </a>
+        <a href="{% url 'contacts' %}" class="nav__link">
+          <i class="fa fa-fw fa-lg fa-address-book" aria-hidden="true" style="margin-right: 10px;"></i>
+          Контакты
+        </a>
       </nav>
     </div>
     <div class="content">
@@ -120,6 +117,7 @@
       type="text/javascript"
       src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script
       type="text/javascript"
       src="{% static 'scripts/lightgallery.min.js' %}"
