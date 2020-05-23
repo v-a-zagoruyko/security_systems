@@ -61,7 +61,7 @@ class Item(models.Model):
   )
   title = models.CharField(_('Название'), max_length=256)
   description = models.TextField(_('Описание'), max_length=1024)
-  size = models.CharField(_('Размер'), max_length=256)
+  size = models.CharField(_('Размер'), null=True, blank=True, max_length=256)
   cost = models.PositiveSmallIntegerField(_('Цена'), )
   cost_sale = models.PositiveSmallIntegerField(
     _('Цена cо скидкой'),

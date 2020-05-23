@@ -7,6 +7,9 @@
     <div class="item-card__info">
       <span class="item-card__title">{{ item.title }}</span>
       <span class="item-card__description">{{ item.description }}</span>
+      {% if item.size %}
+        <span class="item-card__price">Размер: {{ item.size }}</span>
+      {% endif %}
       {% if item.cost_sale > 0 %}
         <span class="item-card__price item-card__price--inline item-card__price--canceled">
           {{ item.cost }} ₽
@@ -25,6 +28,9 @@
   <div id="item{{ item.id }}" class="modal">
     <span class="item-card__title">{{ item.title }}</span>
     <span class="item-card__description">{{ item.description }}</span>
+    {% if item.size %}
+      <span class="item-card__price">Размер: {{ item.size }}</span>
+    {% endif %}
   </div>
   {% endfor %}
 </div>

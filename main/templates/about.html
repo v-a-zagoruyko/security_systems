@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %}{% load static %}
 <h1 class="content__title">О компании</h1>
 <div class="about-container">
   <div class="about-container__info">
@@ -33,11 +33,7 @@
       предприятия, от которых мы имеем хорошие отзывы о нашей работе.
     </p>
   </div>
-  <img
-    src="https://previews.123rf.com/images/yommy8008/yommy80081707/yommy8008170700064/82675767-vertical-photo-of-single-small-kitten-cat-sits-on-tile-in-herbs-garden-with-thyme-in-front-and-chive.jpg"
-    alt=""
-    class="about-container__image"
-  />
+  <img src="{% static 'logo.png' %}" alt="" class="about-container__image">
 </div>
 <div class="cert">
   {% for item in cert %}
