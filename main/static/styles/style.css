@@ -47,9 +47,10 @@ form {
 
 .sidebar-mobile {
   position: fixed;
-  z-index: 1;
+  overflow: auto;
+  z-index: 10;
   width: 100%;
-  height: 70px;
+  max-height: 100vh;
   box-shadow: 0 2px 16px rgba(0,0,0,.08);
   background-color: #242582;
 }
@@ -80,6 +81,73 @@ form {
 .sidebar-mobile .logo__image {
   width: auto;
   height: 70px;
+}
+
+.mobile-nav {
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: #242582;
+}
+
+.mobile-nav .mobile-nav__contact {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mobile-nav .mobile-nav__contact .fa {
+  margin-right: 10px;
+}
+
+#menu-nav-mobile {
+  padding-bottom: 40px;
+}
+
+.mobile-list {
+  overflow-y: auto;
+  padding-top: 30px;
+  background-color: #242582;
+}
+
+.mobile-list .nav .nav__link {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  transition: background-color .2s linear;
+}
+
+.mobile-list .nav .nav__link:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-list .nav .nav__link--bright {
+  padding: 16px 18px;
+  color: #272727;
+  background-color: #ffe400;
+}
+
+.mobile-list .nav .nav__link--bright:hover {
+  background-color: #ffe400;
+}
+
+.mobile-list .nav .nav__link--shifted {
+  padding-left: 35px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-list .nav .nav__link--shifted2 {
+  padding-left: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-desktop {

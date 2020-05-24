@@ -2,9 +2,11 @@ from django.shortcuts import render
 from .models import *
 
 def index(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   partners = Partners.objects.all()
   sellout = Sellout.objects.all()
+
+  print(categories[0])
 
   context = {
     'categories': categories,
@@ -15,7 +17,7 @@ def index(request):
   return render(request, 'index.html', context=context)
 
 def about(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   cert = Cert.objects.all()
 
   context = {
@@ -26,7 +28,7 @@ def about(request):
   return render(request, 'about.html', context=context)
 
 def delivery(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   delivery = Delivery.objects.all()
 
   context = {
@@ -37,7 +39,7 @@ def delivery(request):
   return render(request, 'delivery.html', context=context)
 
 def setup(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
 
   context = {
     'categories': categories,
@@ -46,7 +48,7 @@ def setup(request):
   return render(request, 'setup.html', context=context)
 
 def contacts(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
 
   context = {
     'categories': categories,
@@ -55,7 +57,7 @@ def contacts(request):
   return render(request, 'contacts.html', context=context)
 
 def sale(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   items = Item.objects.filter(cost_sale__gt=0)
 
   context = {
@@ -66,7 +68,7 @@ def sale(request):
   return render(request, 'sale.html', context=context)
 
 def category(request, pk):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   category = ItemCategory.objects.get(id=pk)
   items = Item.objects.filter(kind=category)
 
@@ -79,7 +81,7 @@ def category(request, pk):
   return render(request, 'category.html', context=context)
 
 def search(request):
-  categories = ItemCategory.objects.all()
+  categories = ItemCategory.objects.filter(nestedCategory=None)
   query = request.GET.get('query')
   items = Item.objects.filter(title__icontains=query)
 
